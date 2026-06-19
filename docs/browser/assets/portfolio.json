@@ -1,0 +1,28 @@
+[
+  {
+    "example": true,
+    "sport": "EXAMPLE: Sport name (e.g. Swimming)",
+    "distance": "EXAMPLE: distance (e.g. 100m freestyle, 5 km)",
+    "time": "EXAMPLE: time (format like HH:MM:SS or MM:SS.ms, e.g. 00:53.21)",
+    "result": "EXAMPLE: placement or formatted result (e.g. 1st or 00:53.21)",
+    "resultAk": "EXAMPLE: age/class or category (e.g. AK1)",
+    "link": "EXAMPLE: optional URL to official result (https://...)",
+    "note": "Keep this example entry or remove it. Maintain the file as a JSON array of objects with the shown fields. After editing, rebuild and redeploy to update the live site."
+  },
+  {
+    "sport": "Swimming",
+    "distance": "100m freestyle",
+    "time": "00:53.21",
+    "result": "1st",
+    "resultAk": "AK1",
+    "link": "https://example.com/result/1"
+  },
+  {
+    "sport": "Running",
+    "distance": "5 km",
+    "time": "00:18:34",
+    "result": "2nd",
+    "resultAk": "AK2",
+    "link": "https://example.com/result/2"
+  }
+]

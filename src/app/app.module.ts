@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ImpressumComponent } from './impressum/impressum.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ImpressumComponent } from './impressum/impressum.component';
     HeaderComponent,
     NavbarComponent,
     PortfolioComponent,
-    ImpressumComponent
+    ImpressumComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,

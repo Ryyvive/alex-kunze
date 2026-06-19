@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 interface Entry {
   sport: string;
@@ -6,7 +7,7 @@ interface Entry {
   time: string;
   result: string;
   resultAk: string;
-  link: string;
+  link?: string;
 }
 
 @Component({
@@ -16,47 +17,14 @@ interface Entry {
 })
 export class PortfolioComponent implements OnInit {
   entries: Entry[] = [];
-  model: Entry = { sport: '', distance: '', time: '', result: '', resultAk: '', link: '' };
+  loading = true;
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.load();
-  }
-
-  addEntry(): void {
-    if (!this.model.sport) return;
-    this.entries.push({ ...this.model });
-    this.save();
-    this.model = { sport: '', distance: '', time: '', result: '', resultAk: '', link: '' };
-  }
-
-  deleteEntry(i: number): void {
-    this.entries.splice(i, 1);
-    this.save();
-  }
-
-  save(): void {
-    localStorage.setItem('portfolioEntries', JSON.stringify(this.entries));
-  }
-
-  load(): void {
-    const raw = localStorage.getItem('portfolioEntries');
-    if (raw) {
-      try {
-        this.entries = JSON.parse(raw);
-      } catch {
-        this.entries = [];
-      }
-    }
-  }
-
-  exportJson(): void {
-    const dataStr = JSON.stringify(this.entries, null, 2);
-    const blob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'portfolio-entries.json';
-    a.click();
-    URL.revokeObjectURL(url);
+    this.http.get<Entry[]>('/assets/portfolio.json').subscribe({
+      next: data => { this.entries = data || []; this.loading = false; },
+      error: () => { this.entries = []; this.loading = false; }
+    });
   }
 }

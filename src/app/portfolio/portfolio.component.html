@@ -1,43 +1,10 @@
 <div class="card">
   <div class="card-body">
     <h2 class="card-title">Portfolio — Sport Results</h2>
+    <p class="text-muted">Results are stored in repository (src/assets/portfolio.json) and displayed here read-only.</p>
 
-    <form (ngSubmit)="addEntry()" class="row g-3">
-      <div class="col-md-4">
-        <label class="form-label">Sport</label>
-        <input class="form-control" name="sport" [(ngModel)]="model.sport" required />
-      </div>
-      <div class="col-md-2">
-        <label class="form-label">Distance</label>
-        <input class="form-control" name="distance" [(ngModel)]="model.distance" />
-      </div>
-      <div class="col-md-2">
-        <label class="form-label">Time</label>
-        <input class="form-control" name="time" [(ngModel)]="model.time" />
-      </div>
-      <div class="col-md-2">
-        <label class="form-label">Result</label>
-        <input class="form-control" name="result" [(ngModel)]="model.result" />
-      </div>
-      <div class="col-md-2">
-        <label class="form-label">Result AK</label>
-        <input class="form-control" name="resultAk" [(ngModel)]="model.resultAk" />
-      </div>
-
-      <div class="col-12">
-        <label class="form-label">Link</label>
-        <input class="form-control" name="link" [(ngModel)]="model.link" placeholder="https://..." />
-      </div>
-
-      <div class="col-12">
-        <button class="btn btn-primary me-2" type="submit">Add</button>
-        <button class="btn btn-outline-secondary" type="button" (click)="exportJson()">Export JSON</button>
-      </div>
-    </form>
-
-    <hr />
-
-    <div *ngIf="entries.length === 0" class="text-muted">No entries yet.</div>
+    <div *ngIf="loading" class="text-center py-3">Loading…</div>
+    <div *ngIf="!loading && entries.length === 0" class="text-muted">No entries to show.</div>
 
     <div *ngIf="entries.length > 0" class="table-responsive">
       <table class="table table-sm">
@@ -49,11 +16,10 @@
             <th>Result</th>
             <th>Result AK</th>
             <th>Link</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let e of entries; let i = index">
+          <tr *ngFor="let e of entries">
             <td>{{ e.sport }}</td>
             <td>{{ e.distance }}</td>
             <td>{{ e.time }}</td>
@@ -62,7 +28,6 @@
             <td>
               <a *ngIf="e.link" [href]="e.link" target="_blank" rel="noopener">Open</a>
             </td>
-            <td><button class="btn btn-sm btn-outline-danger" (click)="deleteEntry(i)">Delete</button></td>
           </tr>
         </tbody>
       </table>

@@ -1,0 +1,4 @@
+.site-footer{padding:0.125rem 0;margin-top:0.5rem;font-size:0.75rem;line-height:1}
+.site-footer .container{padding:0}
+.site-footer a{color:var(--bs-secondary);text-decoration:none;margin:0 0.5rem}
+.site-footer a:hover{text-decoration:underline}

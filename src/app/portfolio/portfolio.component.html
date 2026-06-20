@@ -3,10 +3,21 @@
     <h2 class="card-title">Portfolio — Sport Results</h2>
     <p class="text-muted">Results are stored in repository (src/assets/portfolio.json) and displayed here read-only.</p>
 
-    <div *ngIf="loading" class="text-center py-3">Loading…</div>
-    <div *ngIf="!loading && entries.length === 0" class="text-muted">No entries to show.</div>
+    <div class="mb-3">
+      <div class="btn-group" role="group" aria-label="years">
+        <button type="button" class="btn btn-sm" [ngClass]="{'btn-outline-primary': selectedYear!=='all','btn-primary': selectedYear==='all' && !overallBest}" (click)="selectYear('all')">All</button>
+        <button *ngFor="let y of years" type="button" class="btn btn-sm" [ngClass]="{'btn-primary': selectedYear===y && !overallBest,'btn-outline-primary': !(selectedYear===y && !overallBest)}" (click)="selectYear(y)">{{ y }}</button>
+      </div>
 
-    <div *ngIf="entries.length > 0" class="table-responsive">
+      <div class="btn-group ms-3" role="group">
+        <button type="button" class="btn btn-sm" [ngClass]="{'btn-success': overallBest,'btn-outline-success': !overallBest}" (click)="toggleOverallBest()">Overall Best (PB)</button>
+      </div>
+    </div>
+
+    <div *ngIf="loading" class="text-center py-3">Loading…</div>
+    <div *ngIf="!loading && filteredEntries.length === 0" class="text-muted">No entries to show.</div>
+
+    <div *ngIf="filteredEntries.length > 0" class="table-responsive">
       <table class="table table-sm">
         <thead>
           <tr>
@@ -15,16 +26,22 @@
             <th>Time</th>
             <th>Result</th>
             <th>Result AK</th>
+            <th>Year</th>
+            <th>PB</th>
             <th>Link</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let e of entries">
+          <tr *ngFor="let e of filteredEntries">
             <td>{{ e.sport }}</td>
             <td>{{ e.distance }}</td>
             <td>{{ e.time }}</td>
             <td>{{ e.result }}</td>
             <td>{{ e.resultAk }}</td>
+            <td>{{ e.year || '-' }}</td>
+            <td>
+              <span *ngIf="e.pb" class="badge bg-success">PB</span>
+            </td>
             <td>
               <a *ngIf="e.link" [href]="e.link" target="_blank" rel="noopener">Open</a>
             </td>

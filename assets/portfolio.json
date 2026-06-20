@@ -7,6 +7,8 @@
     "result": "EXAMPLE: placement or formatted result (e.g. 1st or 00:53.21)",
     "resultAk": "EXAMPLE: age/class or category (e.g. AK1)",
     "link": "EXAMPLE: optional URL to official result (https://...)",
+    "year": "EXAMPLE: year (e.g. 2024)",
+    "pb": "EXAMPLE: true if personal best / overall best",
     "note": "Keep this example entry or remove it. Maintain the file as a JSON array of objects with the shown fields. After editing, rebuild and redeploy to update the live site."
   },
   {
@@ -15,7 +17,9 @@
     "time": "00:53.21",
     "result": "1st",
     "resultAk": "AK1",
-    "link": "https://example.com/result/1"
+    "link": "https://example.com/result/1",
+    "year": 2024,
+    "pb": true
   },
   {
     "sport": "Running",
@@ -23,6 +27,18 @@
     "time": "00:18:34",
     "result": "2nd",
     "resultAk": "AK2",
-    "link": "https://example.com/result/2"
+    "link": "https://example.com/result/2",
+    "year": 2023,
+    "pb": false
+  },
+  {
+    "sport": "Cycling",
+    "distance": "40 km",
+    "time": "01:05:12",
+    "result": "5th",
+    "resultAk": "AK|Open",
+    "link": "https://example.com/result/3",
+    "year": 2024,
+    "pb": false
   }
 ]
